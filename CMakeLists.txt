@@ -17,7 +17,6 @@ find_package(ament_cmake_core REQUIRED)
 find_package(ament_cmake_export_dependencies REQUIRED)
 find_package(ament_cmake_export_targets REQUIRED)
 find_package(ament_cmake_test REQUIRED)
-find_package(benchmark REQUIRED)
 find_package(osrf_testing_tools_cpp REQUIRED)
 
 add_library(${PROJECT_NAME}
@@ -28,7 +27,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-  benchmark::benchmark
   osrf_testing_tools_cpp::memory_tools)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
