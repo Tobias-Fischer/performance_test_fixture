@@ -36,17 +36,6 @@ PerformanceTest::PerformanceTest()
   {
     suppress_memory_tools_logging = false;
   }
-
-  ComputeStatistics(
-    "max",
-    [](const std::vector<double> & v) -> double {
-      return *(std::max_element(std::begin(v), std::end(v)));
-    });
-  ComputeStatistics(
-    "min",
-    [](const std::vector<double> & v) -> double {
-      return *(std::min_element(std::begin(v), std::end(v)));
-    });
 }
 
 void PerformanceTest::SetUp(benchmark::State &)
