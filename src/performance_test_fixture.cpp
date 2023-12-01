@@ -36,20 +36,9 @@ PerformanceTest::PerformanceTest()
   {
     suppress_memory_tools_logging = false;
   }
-
-  ComputeStatistics(
-    "max",
-    [](const std::vector<double> & v) -> double {
-      return *(std::max_element(std::begin(v), std::end(v)));
-    });
-  ComputeStatistics(
-    "min",
-    [](const std::vector<double> & v) -> double {
-      return *(std::min_element(std::begin(v), std::end(v)));
-    });
 }
 
-void PerformanceTest::SetUp(benchmark::State &)
+void PerformanceTest::SetUp()
 {
   reset_heap_counters();
 
@@ -69,17 +58,11 @@ void PerformanceTest::SetUp(benchmark::State &)
   osrf_testing_tools_cpp::memory_tools::expect_no_realloc_begin();
 }
 
-void PerformanceTest::TearDown(benchmark::State & state)
+void PerformanceTest::TearDown()
 {
   osrf_testing_tools_cpp::memory_tools::expect_no_calloc_end();
   osrf_testing_tools_cpp::memory_tools::expect_no_malloc_end();
   osrf_testing_tools_cpp::memory_tools::expect_no_realloc_end();
-
-  if (osrf_testing_tools_cpp::memory_tools::is_working()) {
-    state.counters["heap_allocations"] = benchmark::Counter(
-      static_cast<double>(allocation_count),
-      benchmark::Counter::kAvgIterations);
-  }
 
   osrf_testing_tools_cpp::memory_tools::disable_monitoring();
   osrf_testing_tools_cpp::memory_tools::uninitialize();
