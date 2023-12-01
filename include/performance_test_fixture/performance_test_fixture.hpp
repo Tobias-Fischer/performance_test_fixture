@@ -15,8 +15,6 @@
 #ifndef PERFORMANCE_TEST_FIXTURE__PERFORMANCE_TEST_FIXTURE_HPP_
 #define PERFORMANCE_TEST_FIXTURE__PERFORMANCE_TEST_FIXTURE_HPP_
 
-#include <benchmark/benchmark.h>
-
 #include <atomic>
 
 #include "osrf_testing_tools_cpp/memory_tools/memory_tools.hpp"
@@ -26,17 +24,17 @@
 namespace performance_test_fixture
 {
 
-class PerformanceTest : public ::benchmark::Fixture
+class PerformanceTest
 {
 public:
   PERFORMANCE_TEST_FIXTURE_PUBLIC
   PerformanceTest();
 
   PERFORMANCE_TEST_FIXTURE_PUBLIC
-  void SetUp(::benchmark::State & state);
+  void SetUp();
 
   PERFORMANCE_TEST_FIXTURE_PUBLIC
-  void TearDown(::benchmark::State & state);
+  void TearDown();
 
 protected:
   PERFORMANCE_TEST_FIXTURE_PUBLIC
